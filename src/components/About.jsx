@@ -22,11 +22,11 @@ const About = () => {
             <span className="text-sm font-medium text-purple-300">Perfil Profissional</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             Sobre <span className="text-gradient hover:scale-105 inline-block transition-transform cursor-default">Mim</span>
           </h2>
           
-          <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+          <div className="space-y-6 text-slate-300 text-base md:text-lg leading-relaxed">
             <p>
               Sou <strong className="text-white">Analista de Dados</strong> com formação em Ciência da Computação e sólida experiência no setor público. Atuo na transformação de bases complexas em <strong>informação estratégica para tomada de decisão</strong> governamental e executiva.
             </p>
