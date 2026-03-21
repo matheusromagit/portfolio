@@ -9,7 +9,7 @@
   --bg-secondary: #131c31;
   --bg-surface: #1e293b;
   --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-secondary: #a1b1c7;
   --accent-primary: #3b82f6;
   --accent-secondary: #8b5cf6;
   --accent-tertiary: #ec4899;
@@ -67,9 +67,16 @@ body::after {
 }
 
 .glass-panel:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsividade para texto */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
 }
 
 .text-gradient {

@@ -50,7 +50,7 @@ const BIPanelGallery = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance"
           >
             Painéis de <span className="text-gradient hover:scale-105 inline-block transition-transform cursor-default">Inteligência em Destaque</span>
           </motion.h2>
