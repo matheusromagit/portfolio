@@ -108,14 +108,8 @@ const BIPanelGallery = () => {
                 </div>
               </div>
 
-              <div className="p-6 flex-grow bg-slate-900/60 relative overflow-hidden group-hover:bg-slate-900/40 transition-colors">
-                <div className="absolute top-2 left-2 right-2 h-8 bg-slate-800/80 backdrop-blur-md rounded-t-lg border border-slate-700/50 flex items-center px-4 gap-2 z-10 shadow-md">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_5px_rgba(245,158,11,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
-                </div>
-                
-                <div className="mt-8 h-[calc(100%-2rem)] border border-slate-700/50 bg-[#1e293b]/80 rounded-xl p-5 shadow-inner group-hover:scale-[1.02] transform transition-transform duration-500">
+              <div className="p-6 flex-grow bg-slate-900/60 relative overflow-hidden group-hover:bg-slate-900/40 transition-colors pt-10">
+                <div className="h-full border border-slate-700/50 bg-[#1e293b]/80 rounded-xl p-5 shadow-inner group-hover:scale-[1.02] transform transition-transform duration-500">
                   <DashboardMockup title={panel.title} metric={panel.metric} change={panel.change} />
                 </div>
                 
