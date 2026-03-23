@@ -248,21 +248,6 @@ const DashboardMockup = ({ title, metric, change, fullScreen }) => {
               {title && (title.includes('Receita') || title.includes('Vendas') || title.includes('Crescimento')) ? <RevenueChart /> : <UsersChart />}
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mt-auto shrink-0 pb-2">
-              <div className="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:bg-slate-700/40 transition-colors">
-                <div className="text-xs text-slate-500">Meta Anual</div>
-                <div className="font-medium text-slate-300 text-sm">85% Atingido</div>
-                <div className="w-full bg-slate-700 h-2 mt-2 rounded-full overflow-hidden">
-                  <div className="bg-blue-500 h-full w-[85%] shadow-[0_0_10px_rgba(59,130,246,0.6)]"></div>
-                </div>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:bg-slate-700/40 transition-colors">
-                <div className="text-xs text-slate-500">Status do Relatório</div>
-                <div className="font-medium text-emerald-400 flex items-center gap-1.5 mt-1 text-sm">
-                  <span className="rounded-full bg-emerald-500 animate-pulse w-2 h-2 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> Ideal / On-time
-                </div>
-              </div>
-            </div>
           </>
         )}
       </div>
