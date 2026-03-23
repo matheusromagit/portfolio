@@ -42,7 +42,7 @@ function App() {
                   WhatsApp
                 </a>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/in/matheus-lima-4ba149182/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-blue-400 transition-colors text-sm"
@@ -50,7 +50,7 @@ function App() {
                   LinkedIn
                 </a>
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/matheusromagit" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-blue-400 transition-colors text-sm"
