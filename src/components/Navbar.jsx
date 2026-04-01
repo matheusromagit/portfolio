@@ -20,7 +20,8 @@ const Navbar = () => {
   });
 
   const navLinks = [
-    { to: '/', label: 'Início' },
+    { to: '/', label: 'Inicio' },
+    { to: '/frontend', label: 'Front-End' },
     { to: '/sobre', label: 'Sobre Mim' },
   ];
 

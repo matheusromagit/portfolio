@@ -6,6 +6,7 @@ import Carousel from './components/Carousel';
 import Features from './components/Features';
 import About from './components/About';
 import BIPanelGallery from './components/BIPanelGallery';
+import Frontend from './components/Frontend';
 
 const Home = () => (
   <>
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<About />} />
+          <Route path="/frontend" element={<Frontend />} />
         </Routes>
         <footer className="py-16 border-t border-slate-800/50 mt-20 bg-gradient-to-t from-slate-900/50 to-transparent">
           <div className="container mx-auto px-6">
