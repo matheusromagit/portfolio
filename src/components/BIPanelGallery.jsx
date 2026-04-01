@@ -1,24 +1,42 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DashboardMockup from './DashboardMockup';
 import { ExternalLink, Maximize2, X, Check } from 'lucide-react';
 
 const panels = [
   {
     id: 1,
-    title: 'Receita Global & Crescimento',
-    metric: 'R$ 842.500',
-    change: 12.5,
-    description: 'Visão executiva de desempenho global de vendas com previsão estruturada.',
-    tags: ['Executivo', 'Finanças', 'Preditivo']
+    title: 'Conectividade Escolas e Saude',
+    description: 'Dashboard de monitoramento de conectividade em escolas e unidades de saude com visualizacao geografica.',
+    tags: ['Governo', 'Geografico', 'KPIs'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Vo7eW7Kw3jogM7FvqFLaWWlX9yT9xz.png'
   },
   {
     id: 2,
-    title: 'Eficiência Operacional',
-    metric: '94,2%',
-    change: 2.1,
-    description: 'Monitoramento da cadeia de suprimentos e painel de alertas avançados.',
-    tags: ['Operações', 'Alertas', 'KPIs']
+    title: 'GESAC - Mapeamento Regional',
+    description: 'Painel interativo com mapeamento de regioes e estados brasileiros com filtros avancados.',
+    tags: ['Geografico', 'Filtros', 'Interativo'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-z8yt3ZMstCpyW9cIGkC3LvMhQ7DcqS.png'
+  },
+  {
+    id: 3,
+    title: 'Mapeamento de Dados Pessoais',
+    description: 'Dashboard MCOM para controle e status de bases de dados por coordenacao.',
+    tags: ['LGPD', 'Compliance', 'Status'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-wgpKgqAHPfqSftdX5ViNyLy6MCAhLx.png'
+  },
+  {
+    id: 4,
+    title: 'Relatorio de Pedidos',
+    description: 'BI de distribuicao e classificacao de pedidos de informacao com graficos interativos.',
+    tags: ['Relatorios', 'Graficos', 'Analise'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-Fd8jCmFTllKGuY4g2REhbvv4usS2kq.png'
+  },
+  {
+    id: 5,
+    title: 'Transformacao Digital',
+    description: 'Monitoramento do plano de transformacao digital com acompanhamento por eixo e trimestre.',
+    tags: ['Estrategico', 'Timeline', 'KPIs'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-oq3JXXMG2F3mzJFMTAdT1tMALQ5kvG.png'
   }
 ];
 
@@ -65,61 +83,58 @@ const BIPanelGallery = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {panels.map((panel, index) => (
             <motion.div
               key={panel.id}
               initial={{ opacity: 0, y: 80, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.3 }}
-              className="glass-panel group overflow-hidden flex flex-col h-[550px] cursor-pointer"
+              transition={{ duration: 0.8, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+              className="glass-panel group overflow-hidden flex flex-col cursor-pointer"
               onClick={(e) => handleExpand(e, panel.id)}
             >
-              <div className="p-8 border-b border-slate-700/50 bg-slate-800/40 flex justify-between items-start group-hover:bg-slate-800/60 transition-colors">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                    {panel.title}
-                  </h3>
-                  <p className="text-base text-slate-400 mb-4">{panel.description}</p>
-                  <div className="flex gap-2">
-                    {panel.tags.map(tag => (
-                      <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.1)]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0 duration-300">
+              {/* Image Container */}
+              <div className="relative h-56 overflow-hidden bg-slate-900/60">
+                <img 
+                  src={panel.image} 
+                  alt={panel.title}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
+                
+                {/* Hover Actions */}
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <button 
                     onClick={(e) => handleExpand(e, panel.id)}
-                    className="p-3 rounded-xl bg-slate-700/50 hover:bg-blue-500 hover:text-white transition-all text-slate-300 shadow-lg hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:-translate-y-1"
+                    className="p-2.5 rounded-xl bg-slate-900/80 backdrop-blur-sm hover:bg-blue-500 hover:text-white transition-all text-white shadow-lg"
                     title="Expandir"
                   >
-                    <Maximize2 className="w-5 h-5" />
+                    <Maximize2 className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={(e) => handleShare(e, panel.id)}
-                    className="p-3 rounded-xl bg-slate-700/50 hover:bg-emerald-500 hover:text-white transition-all text-slate-300 shadow-lg hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:-translate-y-1 relative"
+                    className="p-2.5 rounded-xl bg-slate-900/80 backdrop-blur-sm hover:bg-emerald-500 hover:text-white transition-all text-white shadow-lg"
                     title="Copiar Link"
                   >
-                    {sharedId === panel.id ? <Check className="w-5 h-5 text-white" /> : <ExternalLink className="w-5 h-5" />}
+                    {sharedId === panel.id ? <Check className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              <div className="p-6 flex-grow bg-slate-900/60 relative overflow-hidden group-hover:bg-slate-900/40 transition-colors">
-                <div className="absolute top-2 left-2 right-2 h-8 bg-slate-800/80 backdrop-blur-md rounded-t-lg border border-slate-700/50 flex items-center px-4 gap-2 z-10 shadow-md">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_5px_rgba(245,158,11,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-grow bg-slate-800/40 group-hover:bg-slate-800/60 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  {panel.title}
+                </h3>
+                <p className="text-sm text-slate-400 mb-4 flex-grow">{panel.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {panel.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                
-                <div className="mt-8 h-[calc(100%-2rem)] border border-slate-700/50 bg-[#1e293b]/80 rounded-xl p-5 shadow-inner group-hover:scale-[1.02] transform transition-transform duration-500">
-                  <DashboardMockup title={panel.title} metric={panel.metric} change={panel.change} />
-                </div>
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
             </motion.div>
           ))}
@@ -155,12 +170,11 @@ const BIPanelGallery = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="flex-grow p-6 md:p-10 bg-[#0f172a] overflow-hidden">
-                <DashboardMockup 
-                  title={panels.find(p => p.id === expandedId)?.title}
-                  metric={panels.find(p => p.id === expandedId)?.metric}
-                  change={panels.find(p => p.id === expandedId)?.change}
-                  fullScreen={true}
+              <div className="flex-grow p-6 md:p-10 bg-[#0f172a] overflow-auto flex items-center justify-center">
+                <img 
+                  src={panels.find(p => p.id === expandedId)?.image}
+                  alt={panels.find(p => p.id === expandedId)?.title}
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                 />
               </div>
             </motion.div>

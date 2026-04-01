@@ -1,8 +1,34 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Layers, Palette, Box, PenTool, Monitor, Sparkles, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Code2, Layers, Palette, Box, PenTool, Monitor, Sparkles, Zap, X, Maximize2 } from 'lucide-react';
+
+const projects = [
+  {
+    id: 1,
+    title: 'AutoGest - Sistema de Estoque',
+    description: 'Interface dark mode para gestao de estoque e pecas com design moderno e funcional.',
+    tags: ['React', 'Dashboard', 'Dark Mode'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8-eOUyTyq4BhNhLwGtsOzCDVdyYjQkxj.png'
+  },
+  {
+    id: 2,
+    title: 'AutoGest - Modulo Financeiro',
+    description: 'Painel de controle financeiro com tema claro e visualizacao de receitas e despesas.',
+    tags: ['UI/UX', 'Financas', 'Light Mode'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-BtZrrJnPaNiIMfSF80x3if5DeTvaXB.png'
+  },
+  {
+    id: 3,
+    title: 'Odontolinz - Landing Page',
+    description: 'Website institucional elegante para clinica odontologica com estetica premium.',
+    tags: ['Landing Page', 'Branding', 'Elegante'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-nmgjq1goHYZtaiikzzxJA6tqU1uCjm.png'
+  }
+];
 
 const Frontend = () => {
+  const [expandedId, setExpandedId] = useState(null);
+
   const tools = [
     { 
       name: 'Blender', 
@@ -252,6 +278,71 @@ const Frontend = () => {
           </div>
         </motion.div>
 
+        {/* Projects Gallery */}
+        <motion.div
+          className="mb-24"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+          >
+            <span className="text-white">Projetos </span>
+            <span className="text-gradient">em Destaque</span>
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {projects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className="glass-panel group overflow-hidden cursor-pointer"
+                onClick={() => setExpandedId(project.id)}
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-70" />
+                  
+                  {/* Expand button */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <button className="p-2.5 rounded-xl bg-slate-900/80 backdrop-blur-sm hover:bg-blue-500 transition-all text-white shadow-lg">
+                      <Maximize2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-slate-400 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Skills Section */}
         <motion.div
           className="max-w-4xl mx-auto mb-24"
@@ -365,6 +456,48 @@ const Frontend = () => {
           </a>
         </motion.div>
       </div>
+
+      {/* Expanded Image Modal */}
+      <AnimatePresence>
+        {expandedId && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 backdrop-blur-xl p-4 md:p-10"
+            onClick={() => setExpandedId(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="w-full max-w-6xl max-h-[90vh] glass-panel overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-4 border-b border-slate-700/50 flex justify-between items-center bg-slate-800/80">
+                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  {projects.find(p => p.id === expandedId)?.title}
+                </h3>
+                <button 
+                  onClick={() => setExpandedId(null)}
+                  className="p-2 rounded-xl hover:bg-red-500 hover:text-white transition-all text-slate-400"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-4 bg-[#0f172a] overflow-auto max-h-[calc(90vh-80px)]">
+                <img 
+                  src={projects.find(p => p.id === expandedId)?.image}
+                  alt={projects.find(p => p.id === expandedId)?.title}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
