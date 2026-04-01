@@ -20,7 +20,8 @@ const Navbar = () => {
   });
 
   const navLinks = [
-    { to: '/', label: 'Início' },
+    { to: '/', label: 'Inicio' },
+    { to: '/frontend', label: 'Front-End' },
     { to: '/sobre', label: 'Sobre Mim' },
   ];
 
@@ -35,7 +36,11 @@ const Navbar = () => {
       className="fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 bg-[#0a0f1d]/90 backdrop-blur-xl"
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 text-white font-bold text-xl group">
+        <Link 
+          to="/" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-3 text-white font-bold text-xl group"
+        >
           <div className="p-2.5 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl group-hover:from-blue-500 group-hover:to-blue-600 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] group-hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] group-hover:scale-105">
             <LayoutDashboard className="w-5 h-5" />
           </div>
