@@ -125,3 +125,17 @@ body::after {
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
 }
+
+/* 3D Transforms */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}

@@ -8,35 +8,35 @@ const panels = [
     title: 'Conectividade Escolas e Saude',
     description: 'Dashboard de monitoramento de conectividade em escolas e unidades de saude com visualizacao geografica.',
     tags: ['Governo', 'Geografico', 'KPIs'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Vo7eW7Kw3jogM7FvqFLaWWlX9yT9xz.png'
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-l30kFdHbOFMuIBL2mEUKzapWlwFI6t.png'
   },
   {
     id: 2,
     title: 'GESAC - Mapeamento Regional',
     description: 'Painel interativo com mapeamento de regioes e estados brasileiros com filtros avancados.',
     tags: ['Geografico', 'Filtros', 'Interativo'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-z8yt3ZMstCpyW9cIGkC3LvMhQ7DcqS.png'
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-egTIsEAk1xCr2h5jR3riUKOq4BWrUD.png'
   },
   {
     id: 3,
     title: 'Mapeamento de Dados Pessoais',
     description: 'Dashboard MCOM para controle e status de bases de dados por coordenacao.',
     tags: ['LGPD', 'Compliance', 'Status'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-wgpKgqAHPfqSftdX5ViNyLy6MCAhLx.png'
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-XtX6zvdmv0Ir7dkYed7PRg33pXp5FN.png'
   },
   {
     id: 4,
     title: 'Relatorio de Pedidos',
     description: 'BI de distribuicao e classificacao de pedidos de informacao com graficos interativos.',
     tags: ['Relatorios', 'Graficos', 'Analise'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-Fd8jCmFTllKGuY4g2REhbvv4usS2kq.png'
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-s6FyscAe0lM9KOfgYUuz5vI581o323.png'
   },
   {
     id: 5,
-    title: 'Transformacao Digital',
-    description: 'Monitoramento do plano de transformacao digital com acompanhamento por eixo e trimestre.',
-    tags: ['Estrategico', 'Timeline', 'KPIs'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-oq3JXXMG2F3mzJFMTAdT1tMALQ5kvG.png'
+    title: 'PG MCOM - Dashboard Analitico',
+    description: 'Painel completo de monitoramento com graficos de linha, pizza e barras.',
+    tags: ['Estrategico', 'Analytics', 'KPIs'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-Y249NkLh92vM3nNxNeqeLMSAoaNa4v.png'
   }
 ];
 
@@ -83,7 +83,7 @@ const BIPanelGallery = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto px-4">
           {panels.map((panel, index) => (
             <motion.div
               key={panel.id}
@@ -95,11 +95,11 @@ const BIPanelGallery = () => {
               onClick={(e) => handleExpand(e, panel.id)}
             >
               {/* Image Container */}
-              <div className="relative h-56 overflow-hidden bg-slate-900/60">
+              <div className="relative aspect-square overflow-hidden bg-slate-900/60">
                 <img 
                   src={panel.image} 
                   alt={panel.title}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
                 
