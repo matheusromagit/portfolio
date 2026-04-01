@@ -8,35 +8,35 @@ const panels = [
     title: 'Conectividade Escolas e Saude',
     description: 'Dashboard de monitoramento de conectividade em escolas e unidades de saude com visualizacao geografica.',
     tags: ['Governo', 'Geografico', 'KPIs'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-l30kFdHbOFMuIBL2mEUKzapWlwFI6t.png'
+    image: '/images/panel-1.png'
   },
   {
     id: 2,
     title: 'GESAC - Mapeamento Regional',
     description: 'Painel interativo com mapeamento de regioes e estados brasileiros com filtros avancados.',
     tags: ['Geografico', 'Filtros', 'Interativo'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-egTIsEAk1xCr2h5jR3riUKOq4BWrUD.png'
+    image: '/images/panel-2.png'
   },
   {
     id: 3,
     title: 'Mapeamento de Dados Pessoais',
     description: 'Dashboard MCOM para controle e status de bases de dados por coordenacao.',
     tags: ['LGPD', 'Compliance', 'Status'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-XtX6zvdmv0Ir7dkYed7PRg33pXp5FN.png'
+    image: '/images/panel-3.png'
   },
   {
     id: 4,
     title: 'Relatorio de Pedidos',
     description: 'BI de distribuicao e classificacao de pedidos de informacao com graficos interativos.',
     tags: ['Relatorios', 'Graficos', 'Analise'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-s6FyscAe0lM9KOfgYUuz5vI581o323.png'
+    image: '/images/panel-4.png'
   },
   {
     id: 5,
     title: 'PG MCOM - Dashboard Analitico',
     description: 'Painel completo de monitoramento com graficos de linha, pizza e barras.',
     tags: ['Estrategico', 'Analytics', 'KPIs'],
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-Y249NkLh92vM3nNxNeqeLMSAoaNa4v.png'
+    image: '/images/panel-5.png'
   }
 ];
 
