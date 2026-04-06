@@ -34,23 +34,24 @@ const Frontend = () => {
     offset: ["start start", "end start"]
   });
 
-  // Map scroll to rotation (0 to 1080 degrees = 3 full rotations)
-  const rotateY = useTransform(scrollYProgress, [0, 1], [0, 1080]);
+  // Map scroll to 180-degree half rotations, stopping on the third image
+  const rotateY = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0, 180, 360, 360]);
   
-  // Change project based on rotation
+  // Change project based on scroll progress cleanly exactly at the 90-degree invisible flip points
   useEffect(() => {
-    const unsubscribe = rotateY.on("change", (value) => {
-      const normalizedRotation = value % 360;
-      if (normalizedRotation < 120) {
+    const unsubscribe = scrollYProgress.on("change", (value) => {
+      // 0.2 maps to 90 degrees (invisible edge)
+      // 0.6 maps to 270 degrees (invisible edge)
+      if (value < 0.2) {
         setCurrentProject(0);
-      } else if (normalizedRotation < 240) {
+      } else if (value < 0.6) {
         setCurrentProject(1);
       } else {
         setCurrentProject(2);
       }
     });
     return () => unsubscribe();
-  }, [rotateY]);
+  }, [scrollYProgress]);
 
   const tools = [
     { 
@@ -101,7 +102,7 @@ const Frontend = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden" ref={containerRef}>
+    <section className="relative" ref={containerRef}>
       {/* Animated floating shapes */}
       {floatingShapes.map((shape, i) => (
         <motion.div
@@ -150,7 +151,7 @@ const Frontend = () => {
             <span className="text-sm text-blue-300 font-medium">Desenvolvimento Front-End</span>
           </motion.div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-center leading-tight">
             <span className="text-white">Criando </span>
             <span className="text-gradient">Experiencias</span>
             <br />
@@ -188,61 +189,42 @@ const Frontend = () => {
 
       {/* 3D Notebook Section - Sticky during scroll */}
       <div ref={notebookSectionRef} className="h-[300vh] relative">
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-transparent via-slate-900/50 to-transparent">
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-transparent via-slate-900/50 to-transparent pt-16 pb-16 md:pt-24 md:pb-32">
           {/* Project Info */}
           <motion.div 
-            className="absolute top-20 left-1/2 -translate-x-1/2 text-center z-20 w-full px-4"
+            className="text-center z-20 px-4 w-full max-w-4xl mb-4 md:mb-10 flex-shrink-0"
             key={currentProject}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}>
               {projects[currentProject].title}
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
+            <p className="text-slate-300 text-sm sm:text-base max-w-lg mx-auto drop-shadow-md">
               {projects[currentProject].description}
             </p>
           </motion.div>
 
-          {/* 3D Notebook */}
-          <div className="perspective-[2000px] w-full max-w-4xl mx-auto px-4">
+          {/* 3D Image Component */}
+          <div className="perspective-[2000px] w-full max-w-3xl mx-auto px-4 flex-1 flex flex-col justify-center">
             <motion.div
-              className="relative preserve-3d cursor-pointer"
+              className="relative preserve-3d cursor-pointer w-full"
               style={{ rotateY }}
               onClick={() => setExpandedId(projects[currentProject].id)}
             >
-              {/* Notebook Frame */}
-              <div className="relative mx-auto" style={{ width: '100%', maxWidth: '800px' }}>
-                {/* Screen bezel */}
-                <div className="relative bg-gradient-to-b from-slate-700 to-slate-800 rounded-t-2xl p-2 sm:p-3 shadow-2xl">
-                  {/* Camera notch */}
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-slate-600" />
+              {/* Image Frame without Notebook borders */}
+              <div className="relative mx-auto w-full transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '750px' }}>
+                <div className="relative rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-700/50 bg-slate-900/50 flex justify-center items-center">
+                  <img
+                    src={projects[currentProject].image}
+                    alt={projects[currentProject].title}
+                    className="w-full max-h-[55vh] lg:max-h-[60vh] object-contain rounded-xl"
+                    style={{ transform: currentProject === 1 ? 'scaleX(-1)' : 'none' }}
+                  />
                   
-                  {/* Screen */}
-                  <div className="relative bg-slate-900 rounded-lg overflow-hidden aspect-[16/10]">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={currentProject}
-                        src={projects[currentProject].image}
-                        alt={projects[currentProject].title}
-                        className="w-full h-full object-cover object-top"
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    </AnimatePresence>
-                    
-                    {/* Screen reflection */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                </div>
-                
-                {/* Keyboard base */}
-                <div className="relative">
-                  <div className="h-3 sm:h-4 bg-gradient-to-b from-slate-600 to-slate-700 rounded-b-xl shadow-lg" />
-                  <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 w-16 sm:w-24 h-1 bg-slate-500 rounded-full" />
+                  {/* Subtle reflection overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
             </motion.div>
@@ -275,7 +257,7 @@ const Frontend = () => {
       </div>
 
       {/* Rest of the page */}
-      <div className="relative z-10 py-24 px-4">
+      <div className="relative z-10 pt-10 pb-24 px-4">
         {/* Code Block */}
         <motion.div
           className="max-w-4xl mx-auto mb-24"

@@ -1,6 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Prevent browser from restoring scroll position on reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    
+    // Instantly jump to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+};
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Carousel from './components/Carousel';
@@ -8,6 +24,8 @@ import Features from './components/Features';
 import About from './components/About';
 import BIPanelGallery from './components/BIPanelGallery';
 import Frontend from './components/Frontend';
+import Backend from './components/Backend';
+import AIEfficiency from './components/AIEfficiency';
 
 const Home = () => (
   <>
@@ -21,12 +39,15 @@ const Home = () => (
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen text-slate-50 selection:bg-blue-500/30 pt-20">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<About />} />
           <Route path="/frontend" element={<Frontend />} />
+          <Route path="/backend" element={<Backend />} />
+          <Route path="/ia-eficiencia" element={<AIEfficiency />} />
         </Routes>
         <footer className="py-16 border-t border-slate-800/50 mt-20 bg-gradient-to-t from-slate-900/50 to-transparent">
           <div className="container mx-auto px-6">

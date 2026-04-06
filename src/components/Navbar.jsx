@@ -22,6 +22,8 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Inicio' },
     { to: '/frontend', label: 'Front-End' },
+    { to: '/backend', label: 'Back-End' },
+    { to: '/ia-eficiencia', label: 'IA & Processos' },
     { to: '/sobre', label: 'Sobre Mim' },
   ];
 
