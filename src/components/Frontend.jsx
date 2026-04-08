@@ -7,19 +7,19 @@ const projects = [
     id: 1,
     title: 'AutoGest - Sistema de Estoque',
     description: 'Interface dark mode para gestão de estoque e peças com design moderno e funcional.',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8-eOUyTyq4BhNhLwGtsOzCDVdyYjQkxj.png'
+    image: '/images/6.png'
   },
   {
     id: 2,
     title: 'AutoGest - Módulo Financeiro',
     description: 'Painel de controle financeiro com tema claro e visualização de receitas e despesas.',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-BtZrrJnPaNiIMfSF80x3if5DeTvaXB.png'
+    image: '/images/7.png'
   },
   {
     id: 3,
     title: 'Odontolinz - Landing Page',
     description: 'Website institucional elegante para clínica odontológica com estética premium.',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-nmgjq1goHYZtaiikzzxJA6tqU1uCjm.png'
+    image: '/images/8.png'
   }
 ];
 
