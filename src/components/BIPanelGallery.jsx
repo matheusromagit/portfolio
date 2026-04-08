@@ -5,37 +5,37 @@ import { ExternalLink, Maximize2, X, Check } from 'lucide-react';
 const panels = [
   {
     id: 1,
-    title: 'Conectividade Escolas e Saude',
-    description: 'Dashboard de monitoramento de conectividade em escolas e unidades de saude com visualizacao geografica.',
-    tags: ['Governo', 'Geografico', 'KPIs'],
+    title: 'Conectividade nas Escolas',
+    description: 'Dashboard de monitoramento de conectividade em escolas e unidades de saúde com visualização geográfica em tempo real.',
+    tags: ['Governo', 'Geográfico', 'Investimento'],
     image: '/images/panel-1.png'
   },
   {
     id: 2,
     title: 'GESAC - Mapeamento Regional',
-    description: 'Painel interativo com mapeamento de regioes e estados brasileiros com filtros avancados.',
-    tags: ['Geografico', 'Filtros', 'Interativo'],
+    description: 'Painel interativo de mapeamento regional com interface personalizada e visualização de alcance das ERBs.',
+    tags: ['Geográfico', 'Interface Premium', 'Filtros'],
     image: '/images/panel-2.png'
   },
   {
     id: 3,
     title: 'Mapeamento de Dados Pessoais',
-    description: 'Dashboard MCOM para controle e status de bases de dados por coordenacao.',
-    tags: ['LGPD', 'Compliance', 'Status'],
+    description: 'Sistema de monitoramento de conformidade e bases de dados pessoais (LGPD) por coordenação.',
+    tags: ['LGPD', 'Compliance', 'Gestão'],
     image: '/images/panel-3.png'
   },
   {
     id: 4,
-    title: 'Relatorio de Pedidos',
-    description: 'BI de distribuicao e classificacao de pedidos de informacao com graficos interativos.',
-    tags: ['Relatorios', 'Graficos', 'Analise'],
+    title: 'Relatório de Pedidos de Informação',
+    description: 'BI para distribuição, classificação e status semanal de pedidos de acesso à informação.',
+    tags: ['Transparência', 'Gráficos', 'Relatórios'],
     image: '/images/panel-4.png'
   },
   {
     id: 5,
-    title: 'PG MCOM - Dashboard Analitico',
-    description: 'Painel completo de monitoramento com graficos de linha, pizza e barras.',
-    tags: ['Estrategico', 'Analytics', 'KPIs'],
+    title: 'PG.MCOM - Analytics Estratégico',
+    description: 'Dashboard analítico completo para monitoramento de planos de trabalho, metas e entregas.',
+    tags: ['Analytics', 'KPIs', 'Estratégico'],
     image: '/images/panel-5.png'
   }
 ];
