@@ -50,14 +50,16 @@ const Hero = () => {
 
       <motion.a 
         href="#gallery"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-400 animate-bounce cursor-pointer hover:text-blue-400 transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-400 cursor-pointer hover:text-blue-400 transition-colors"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
         transition={{ delay: 0.6, duration: 1 }}
         whileHover={{ scale: 1.2 }}
       >
-        <ChevronDown className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+        <div className="animate-bounce">
+          <ChevronDown className="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+        </div>
       </motion.a>
     </section>
   );

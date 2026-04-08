@@ -93,15 +93,15 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-white/5 bg-[#0a0f1d]/95 backdrop-blur-xl"
+            className="md:hidden border-t border-white/5 bg-[#0a0f1d] backdrop-blur-2xl shadow-2xl"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+            <div className="container mx-auto px-6 py-4 flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link 
                   key={link.to}
                   to={link.to} 
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`font-medium py-3 px-4 rounded-xl transition-all ${location.pathname === link.to ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'}`}
+                  className={`font-medium py-2.5 px-4 rounded-xl transition-all ${location.pathname === link.to ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'}`}
                 >
                   {link.label}
                 </Link>
@@ -110,7 +110,8 @@ const Navbar = () => {
                 href="https://wa.me/55061995164994" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="font-medium py-3 px-4 rounded-xl bg-blue-600 text-white text-center hover:bg-blue-500 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-medium py-2.5 px-4 mt-2 rounded-xl bg-blue-600 text-white text-center hover:bg-blue-500 transition-colors"
               >
                 Contato
               </a>

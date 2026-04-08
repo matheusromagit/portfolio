@@ -58,7 +58,7 @@ const AIEfficiency = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Ferramentas de Inteligência Artificial tornam tudo mais rápido, mas apenas uma forte base **técnica** e de **engenharia** transforma essa velocidade em processos robustos e resultados escaláveis que impactam o negócio.
+            Ferramentas de Inteligência Artificial tornam tudo mais rápido, mas apenas uma forte base <strong className="text-white font-semibold">técnica</strong> e de <strong className="text-white font-semibold">engenharia</strong> transforma essa velocidade em processos robustos e resultados escaláveis que impactam o negócio.
           </p>
         </motion.div>
 

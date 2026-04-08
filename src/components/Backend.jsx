@@ -42,7 +42,7 @@ const Backend = () => {
   return (
     <div className="min-h-screen bg-[#0a0f1d] pt-20 overflow-hidden relative">
       {/* Background Grid & Glow */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
+      <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none mix-blend-overlay"></div>
       <div className="absolute inset-0 bg-grid-slate-800/[0.04] bg-[size:32px_32px]"></div>
       
       {/* Floating abstract servers */}

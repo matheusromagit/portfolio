@@ -6,19 +6,19 @@ const projects = [
   {
     id: 1,
     title: 'AutoGest - Sistema de Estoque',
-    description: 'Interface dark mode para gestao de estoque e pecas com design moderno e funcional.',
+    description: 'Interface dark mode para gestão de estoque e peças com design moderno e funcional.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8-eOUyTyq4BhNhLwGtsOzCDVdyYjQkxj.png'
   },
   {
     id: 2,
-    title: 'AutoGest - Modulo Financeiro',
-    description: 'Painel de controle financeiro com tema claro e visualizacao de receitas e despesas.',
+    title: 'AutoGest - Módulo Financeiro',
+    description: 'Painel de controle financeiro com tema claro e visualização de receitas e despesas.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-BtZrrJnPaNiIMfSF80x3if5DeTvaXB.png'
   },
   {
     id: 3,
     title: 'Odontolinz - Landing Page',
-    description: 'Website institucional elegante para clinica odontologica com estetica premium.',
+    description: 'Website institucional elegante para clínica odontológica com estética premium.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-nmgjq1goHYZtaiikzzxJA6tqU1uCjm.png'
   }
 ];
@@ -59,21 +59,21 @@ const Frontend = () => {
       icon: <Box className="w-8 h-8" />,
       color: 'from-orange-500 to-orange-600',
       glow: 'rgba(249, 115, 22, 0.4)',
-      desc: 'Modelagem 3D, animacoes e renderizacao fotorrealista'
+      desc: 'Modelagem 3D, animações e renderização fotorrealista'
     },
     { 
       name: 'Illustrator', 
       icon: <PenTool className="w-8 h-8" />,
       color: 'from-amber-500 to-orange-500',
       glow: 'rgba(245, 158, 11, 0.4)',
-      desc: 'Vetorizacao, logotipos e identidade visual'
+      desc: 'Vetorização, logotipos e identidade visual'
     },
     { 
       name: 'Affinity', 
       icon: <Palette className="w-8 h-8" />,
       color: 'from-purple-500 to-pink-500',
       glow: 'rgba(168, 85, 247, 0.4)',
-      desc: 'Design grafico, edicao de imagens e layouts'
+      desc: 'Design gráfico, edição de imagens e layouts'
     },
     { 
       name: 'Figma', 
@@ -153,9 +153,9 @@ const Frontend = () => {
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-center leading-tight">
             <span className="text-white">Criando </span>
-            <span className="text-gradient">Experiencias</span>
+            <span className="text-gradient">Experiências</span>
             <br />
-            <span className="text-white">Digitais Unicas</span>
+            <span className="text-white">Digitais Únicas</span>
           </h1>
           
           <motion.p 
@@ -165,8 +165,8 @@ const Frontend = () => {
             viewport={{ once: false }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Combino codigo limpo com design criativo, utilizando ferramentas profissionais 
-            de producao digital para entregar interfaces modernas e imersivas.
+            Combino código limpo com design criativo, utilizando ferramentas profissionais 
+            de produção digital para entregar interfaces modernas e imersivas.
           </motion.p>
         </motion.div>
 
@@ -251,7 +251,7 @@ const Frontend = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            {currentProject < 2 ? 'Continue rolando...' : 'Ultimo projeto!'}
+            {currentProject < 2 ? 'Continue rolando...' : 'Último projeto!'}
           </motion.div>
         </div>
       </div>
@@ -319,7 +319,7 @@ const Frontend = () => {
                 >
                   <span className="text-green-300">passion</span>
                   <span className="text-white">:</span>{' '}
-                  <span className="text-orange-300">&quot;Criar experiencias memoraveis&quot;</span>
+                  <span className="text-orange-300">&quot;Criar experiências memoráveis&quot;</span>
                 </motion.div>
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
@@ -350,7 +350,7 @@ const Frontend = () => {
             viewport={{ once: false }}
           >
             <span className="text-white">Ferramentas de </span>
-            <span className="text-gradient">Producao Digital</span>
+            <span className="text-gradient">Produção Digital</span>
           </motion.h2>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
@@ -401,7 +401,7 @@ const Frontend = () => {
             viewport={{ once: false }}
           >
             <span className="text-white">Habilidades </span>
-            <span className="text-gradient">Tecnicas</span>
+            <span className="text-gradient">Técnicas</span>
           </motion.h2>
 
           <div className="glass-panel p-6 sm:p-8 md:p-10 space-y-6 sm:space-y-8">
@@ -448,13 +448,13 @@ const Frontend = () => {
               },
               {
                 icon: <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />,
-                title: 'Animacoes Fluidas',
-                desc: 'Micro-interacoes e transicoes suaves que encantam usuarios.'
+                title: 'Animações Fluidas',
+                desc: 'Micro-interações e transições suaves que encantam usuários.'
               },
               {
                 icon: <Zap className="w-6 h-6 sm:w-7 sm:h-7" />,
                 title: 'Performance',
-                desc: 'Codigo otimizado para carregamento rapido e fluidez.'
+                desc: 'Código otimizado para carregamento rápido e fluidez.'
               }
             ].map((item, i) => (
               <motion.div
@@ -494,7 +494,7 @@ const Frontend = () => {
             rel="noopener noreferrer" 
             className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold text-base sm:text-lg transition-all shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] hover:-translate-y-1"
           >
-            <span>Vamos Criar Algo Incrivel</span>
+            <span>Vamos Criar Algo Incrível</span>
             <Sparkles className="w-5 h-5" />
           </a>
         </motion.div>
