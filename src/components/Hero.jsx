@@ -4,16 +4,16 @@ import { ChevronDown, LayoutDashboard } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden py-24 px-4">
+    <section className="relative">
       
       {/* Abstract Background Elements */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-screen filter blur-[120px] opacity-30 animate-float"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[28rem] h-[28rem] bg-purple-600 rounded-full mix-blend-screen filter blur-[140px] opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-screen filter blur-[120px] opacity-30 animate-float pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[28rem] h-[28rem] bg-purple-600 rounded-full mix-blend-screen filter blur-[140px] opacity-20 animate-float pointer-events-none" style={{ animationDelay: '2s' }}></div>
 
-      <div className="container relative z-10 flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center relative z-10 py-24 px-4 overflow-hidden">
         
         <motion.div 
-          className="text-center mb-12 max-w-4xl mx-auto flex flex-col items-center"
+          className="text-center mb-12 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
