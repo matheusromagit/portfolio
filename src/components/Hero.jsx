@@ -1,7 +1,6 @@
-// src/components/Hero.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, LayoutDashboard } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -13,23 +12,34 @@ const Hero = () => {
 
       <div className="container relative z-10 text-center flex flex-col items-center">
         
+        <motion.div
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ delay: 0.2 }}
+        >
+          <LayoutDashboard className="w-4 h-4 text-blue-400" />
+          <span className="text-sm text-blue-300 font-medium">Business Intelligence</span>
+        </motion.div>
+
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 text-balance"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-center leading-tight"
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.5 }}
-          transition={{ duration: 1, type: "spring", bounce: 0.4 }}
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
         >
-          Transformando Dados em <br />
+          <span className="text-white">Transformando Dados em</span><br />
           <span className="text-gradient">Inteligência Estratégica</span>
         </motion.h1>
 
         <motion.p 
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-3xl mb-14 px-4 md:px-0 text-pretty"
+          className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mb-14 mx-auto text-pretty px-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           Portfólio de painéis interativos, análises avançadas e sistemas de relatórios automatizados criados para impulsionar o crescimento dos negócios.
         </motion.p>
