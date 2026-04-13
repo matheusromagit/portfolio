@@ -54,7 +54,7 @@ function App() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex flex-col items-center md:items-start gap-2">
                 <p className="text-slate-400 text-base">Matheus Rodrigues Lima</p>
-                <p className="text-slate-500 text-sm">Onde a precisao tecnica encontra a visao estetica</p>
+                <p className="text-slate-500 text-sm">Onde a precisão técnica encontra a visão estética</p>
               </div>
               <div className="flex items-center gap-6">
                 <a 

@@ -215,16 +215,13 @@ const Frontend = () => {
             >
               {/* Image Frame without Notebook borders */}
               <div className="relative mx-auto w-full transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '750px' }}>
-                <div className="relative rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-700/50 bg-slate-900/50 flex justify-center items-center">
+                <div className="relative flex justify-center items-center">
                   <img
                     src={projects[currentProject].image}
                     alt={projects[currentProject].title}
-                    className="w-full max-h-[55vh] lg:max-h-[60vh] object-contain rounded-xl"
+                    className="w-full max-h-[55vh] lg:max-h-[60vh] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
                     style={{ transform: currentProject === 1 ? 'scaleX(-1)' : 'none' }}
                   />
-                  
-                  {/* Subtle reflection overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
             </motion.div>
@@ -528,7 +525,7 @@ const Frontend = () => {
               <img 
                 src={projects.find(p => p.id === expandedId)?.image}
                 alt={projects.find(p => p.id === expandedId)?.title}
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="w-full h-auto drop-shadow-2xl"
               />
             </motion.div>
           </motion.div>

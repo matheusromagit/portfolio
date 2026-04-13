@@ -6,7 +6,7 @@ const Backend = () => {
   const pillars = [
     {
       title: 'Arquitetura Escalável',
-      description: 'Desenho de sistemas distribuídos e microserviços prontos para suportar alto volume de requisições sem perder desempenho.',
+      description: 'Desenho de sistemas distribuídos e microsserviços prontos para suportar alto volume de requisições sem perder desempenho.',
       icon: <Server className="w-8 h-8 text-blue-400" />,
       color: 'from-blue-500/20 to-indigo-500/20'
     },

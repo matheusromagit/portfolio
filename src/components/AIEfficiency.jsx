@@ -117,7 +117,7 @@ const AIEfficiency = () => {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">O Impacto na Prática</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">Como a aplicação correta de recursos computacionais potencializados por técnica pura alteram completamente o dia-a-dia produtivo.</p>
+            <p className="text-slate-400 max-w-2xl mx-auto">Como a aplicação correta de recursos computacionais potencializados por técnica pura alteram completamente o dia a dia produtivo.</p>
           </div>
 
           <div className="space-y-6">
