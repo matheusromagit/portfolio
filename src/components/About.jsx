@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Server, Lightbulb, ShieldCheck } from 'lucide-react';
+import { Database, Server, Lightbulb, ShieldCheck, LayoutDashboard, Code2, Brain } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -28,7 +29,7 @@ const About = () => {
           
           <div className="space-y-6 text-slate-300 text-base md:text-lg leading-relaxed">
             <p>
-              Sou <strong className="text-white">Analista de Dados</strong> com formação em Ciência da Computação e sólida experiência no setor público. Atuo na transformação de bases complexas em <strong>informação estratégica para tomada de decisão</strong> governamental e executiva.
+              Eu sou <strong className="text-white">Matheus Rodrigues Lima, Analista de Dados</strong> com formação em Ciência da Computação e sólida experiência no setor público. Atuo na transformação de bases complexas em <strong>informação estratégica para tomada de decisão</strong> governamental e executiva.
             </p>
             <p>
               Minha especialidade cobre a engenharia do analítico: desde a <strong>modelagem de dados (Star Schema)</strong>, até o desenvolvimento de dashboards altamente interativos e performáticos no Power BI. Minha abordagem vai do suporte técnico ao insight gerencial — garantindo governança, integridade e qualidade em todo o pipeline de dados.
@@ -66,6 +67,68 @@ const About = () => {
           ))}
         </motion.div>
         
+      </div>
+
+      {/* Navigation To Other Tabs */}
+      <div className="container relative z-10 mt-32">
+        <div className="text-center mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Explore meu <span className="text-gradient">Portfólio</span></h3>
+          <p className="text-slate-400">Navegue pelas diferentes áreas da minha atuação</p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Link to="/paineis">
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-panel p-6 h-full flex flex-col items-center text-center group cursor-pointer border border-blue-500/20 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
+                <LayoutDashboard className="w-8 h-8 text-blue-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">Painéis BI</h4>
+              <p className="text-sm text-slate-400">Dashboards interativos e modelagem de dados estratégica.</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/frontend">
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-panel p-6 h-full flex flex-col items-center text-center group cursor-pointer border border-indigo-500/20 hover:border-indigo-500/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] transition-all duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4 group-hover:bg-indigo-500/20 transition-colors">
+                <Code2 className="w-8 h-8 text-indigo-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">Front-End</h4>
+              <p className="text-sm text-slate-400">Interfaces modernas, dinâmicas e focadas em UI/UX.</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/backend">
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-panel p-6 h-full flex flex-col items-center text-center group cursor-pointer border border-purple-500/20 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] transition-all duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
+                <Server className="w-8 h-8 text-purple-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">Back-End</h4>
+              <p className="text-sm text-slate-400">APIs resilientes, microsserviços e bancos de dados.</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/ia-eficiencia">
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-panel p-6 h-full flex flex-col items-center text-center group cursor-pointer border border-emerald-500/20 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:bg-emerald-500/20 transition-colors">
+                <Brain className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">IA & Processos</h4>
+              <p className="text-sm text-slate-400">Automação avançada e integrações inteligentes.</p>
+            </motion.div>
+          </Link>
+        </div>
       </div>
     </section>
   );

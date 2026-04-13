@@ -43,8 +43,8 @@ function App() {
       <div className="min-h-screen text-slate-50 selection:bg-blue-500/30 pt-20">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<About />} />
+          <Route path="/" element={<About />} />
+          <Route path="/paineis" element={<Home />} />
           <Route path="/frontend" element={<Frontend />} />
           <Route path="/backend" element={<Backend />} />
           <Route path="/ia-eficiencia" element={<AIEfficiency />} />
@@ -53,7 +53,7 @@ function App() {
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex flex-col items-center md:items-start gap-2">
-                <p className="text-slate-400 text-base">Dados com Design</p>
+                <p className="text-slate-400 text-base">Matheus Rodrigues Lima</p>
                 <p className="text-slate-500 text-sm">Onde a precisao tecnica encontra a visao estetica</p>
               </div>
               <div className="flex items-center gap-6">

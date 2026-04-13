@@ -20,24 +20,25 @@ const Navbar = () => {
   });
 
   const navLinks = [
-    { to: '/', label: 'Inicio' },
+    { to: '/', label: 'Início' },
+    { to: '/paineis', label: 'Painéis BI' },
     { to: '/frontend', label: 'Front-End' },
     { to: '/backend', label: 'Back-End' },
     { to: '/ia-eficiencia', label: 'IA & Processos' },
-    { to: '/sobre', label: 'Sobre Mim' },
   ];
 
   return (
-    <motion.nav 
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" }
-      }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 bg-[#0a0f1d]/90 backdrop-blur-xl"
-    >
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+    <>
+      <motion.nav 
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-100%" }
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 bg-[#0a0f1d]/90 backdrop-blur-xl"
+      >
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <Link 
           to="/" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -74,15 +75,7 @@ const Navbar = () => {
             Contato
           </a>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-slate-800/50 transition-colors text-slate-300"
-          aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Menu Button was moved outside motion.nav to stay fixed */}
       </div>
 
       {/* Mobile Menu */}
@@ -119,7 +112,17 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+      </motion.nav>
+
+      {/* Floating Fixed Menu Button for Mobile */}
+      <button 
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="md:hidden fixed top-5 right-5 z-[101] p-3 rounded-full bg-slate-900/80 backdrop-blur-md shadow-[0_0_20px_rgba(37,99,235,0.3)] text-white hover:bg-slate-800 transition-all border border-blue-500/30"
+        aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+      >
+        {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+    </>
   );
 };
 
