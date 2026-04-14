@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, Menu, X } from 'lucide-react';
@@ -7,11 +7,27 @@ const Navbar = () => {
   const location = useLocation();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 150) {
+    
+    if (latest > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+
+    if (isMobile && latest > previous && latest > 150) {
       setHidden(true);
       setMobileMenuOpen(false);
     } else {
@@ -36,9 +52,13 @@ const Navbar = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 bg-[#0a0f1d]/90 backdrop-blur-xl"
+        className={`fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? 'bg-[#0a0f1d]/60' : 'bg-[#0a0f1d]/90'
+        }`}
       >
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        <div className={`container mx-auto px-6 flex items-center justify-between transition-all duration-300 ${
+          scrolled ? 'h-16' : 'h-24'
+        }`}>
         <Link 
           to="/" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
