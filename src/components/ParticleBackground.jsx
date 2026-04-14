@@ -2,12 +2,11 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-// Overlay que registra as LINHAS entre pontos próximos ao passar o mouse
-// e as deixa persistir por ~1.5s antes de sumirem
+// Canvas overlay: registra posições do mouse e desenha linhas conectadas
+// que persistem e somem gradualmente (~2 segundos)
 const LingerLines = () => {
   const canvasRef = useRef(null);
-  const linesRef = useRef([]);
-  const mouseRef = useRef({ x: -9999, y: -9999 });
+  const historyRef = useRef([]); // lista de pontos {x, y, time}
   const rafRef = useRef(null);
 
   useEffect(() => {
@@ -22,68 +21,47 @@ const LingerLines = () => {
     window.addEventListener("resize", resize);
 
     const onMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-
-      // Pega as partículas do tsparticles via DOM/container
-      const container = window.tsParticles?.domItem(0);
-      if (!container) return;
-
-      const allParticles = container.particles?.array;
-      if (!allParticles) return;
-
-      const mx = e.clientX;
-      const my = e.clientY;
-      const grabDist = 220;
-
-      // Partículas próximas ao mouse
-      const nearby = allParticles.filter((p) => {
-        const dx = p.position.x - mx;
-        const dy = p.position.y - my;
-        return Math.sqrt(dx * dx + dy * dy) < grabDist;
-      });
-
-      // Gera linhas entre pares de partículas próximas
-      for (let i = 0; i < nearby.length; i++) {
-        for (let j = i + 1; j < nearby.length; j++) {
-          const a = nearby[i];
-          const b = nearby[j];
-          const dx = a.position.x - b.position.x;
-          const dy = a.position.y - b.position.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 160) {
-            linesRef.current.push({
-              x1: a.position.x,
-              y1: a.position.y,
-              x2: b.position.x,
-              y2: b.position.y,
-              life: 1.0,
-              decay: 1 / (60 * 1.8), // ~1.8 segundos pra sumir
-            });
-          }
-        }
-      }
-
-      // Limita quantidade de linhas na memória
-      if (linesRef.current.length > 400) {
-        linesRef.current = linesRef.current.slice(-400);
-      }
+      historyRef.current.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+      // Mantém só os últimos 2 segundos
+      const cutoff = Date.now() - 2000;
+      historyRef.current = historyRef.current.filter((p) => p.time > cutoff);
     };
 
     window.addEventListener("mousemove", onMouseMove);
 
+    const LINGER_MS = 2000; // duração total do fade
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      linesRef.current = linesRef.current.filter((l) => l.life > 0);
+      const now = Date.now();
+      const pts = historyRef.current;
 
-      for (const l of linesRef.current) {
-        l.life -= l.decay;
-        ctx.beginPath();
-        ctx.moveTo(l.x1, l.y1);
-        ctx.lineTo(l.x2, l.y2);
-        ctx.strokeStyle = `rgba(168, 85, 247, ${l.life * 0.6})`;
-        ctx.lineWidth = l.life * 1.2;
-        ctx.stroke();
+      // Conecta pontos próximos entre si com linhas que somem de acordo com age
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const a = pts[i];
+          const b = pts[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist > 130) continue; // só conecta pontos próximos
+
+          // Opacidade baseada no ponto mais antigo dos dois
+          const oldest = Math.min(a.time, b.time);
+          const age = now - oldest;
+          const life = Math.max(0, 1 - age / LINGER_MS);
+
+          if (life <= 0) continue;
+
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(139, 92, 246, ${life * 0.65})`; // roxo neon
+          ctx.lineWidth = life * 1.5;
+          ctx.stroke();
+        }
       }
 
       rafRef.current = requestAnimationFrame(animate);
@@ -108,7 +86,7 @@ const LingerLines = () => {
         width: "100vw",
         height: "100vh",
         pointerEvents: "none",
-        zIndex: -9, // acima do tsparticles (-10) mas abaixo do conteúdo
+        zIndex: -9,
       }}
     />
   );
@@ -131,11 +109,15 @@ const ConstellationBg = () => {
       interactivity: {
         events: {
           onClick: { enable: true, mode: "push" },
-          onHover: { enable: false },
+          onHover: { enable: true, mode: "grab" }, // linhas imediatas ao se aproximar
           resize: true,
         },
         modes: {
           push: { quantity: 4 },
+          grab: {
+            distance: 180,
+            links: { opacity: 0.55, color: "#a855f7" },
+          },
         },
       },
       particles: {
@@ -160,7 +142,7 @@ const ConstellationBg = () => {
         },
         number: {
           density: { enable: true, area: 600 },
-          value: 200,
+          value: 200, // alta densidade
         },
         opacity: {
           value: { min: 0.05, max: 0.7 },
