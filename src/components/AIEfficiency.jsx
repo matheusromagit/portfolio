@@ -32,7 +32,7 @@ const AIEfficiency = () => {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-16 lg:py-24">
+      <div className="mx-auto px-4 lg:px-8 relative z-10 py-16 lg:py-24">
         {/* Hero Section */}
         <motion.div 
           className="text-center max-w-4xl mx-auto mb-24"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Server, Lightbulb, ShieldCheck, LayoutDashboard, Code2, Brain } from 'lucide-react';
+import { Server, LayoutDashboard, Code2, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const About = () => {

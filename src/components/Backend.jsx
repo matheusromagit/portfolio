@@ -49,7 +49,7 @@ const Backend = () => {
       <div className="absolute top-40 left-[10%] w-72 h-72 bg-blue-600/30 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
       <div className="absolute bottom-40 right-[10%] w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px] mix-blend-screen pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-16 lg:py-24">
+      <div className="mx-auto px-4 lg:px-8 relative z-10 py-16 lg:py-24">
         {/* Hero Section */}
         <motion.div 
           className="text-center max-w-4xl mx-auto mb-20"
