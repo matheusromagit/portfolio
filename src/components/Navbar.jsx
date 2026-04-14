@@ -52,8 +52,8 @@ const Navbar = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 w-full z-[100] glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 backdrop-blur-xl transition-all duration-300 ${
-          scrolled ? 'bg-[#0a0f1d]/60' : 'bg-[#0a0f1d]/90'
+        className={`fixed top-0 left-0 w-full z-[100] border-b border-white/10 backdrop-blur-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-all duration-300 ${
+          scrolled ? 'bg-[#0a0f1d]/70' : 'bg-[#0a0f1d]/90'
         }`}
       >
         <div className={`container mx-auto px-6 flex items-center justify-between transition-all duration-300 ${
