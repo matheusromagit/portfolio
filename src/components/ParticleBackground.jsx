@@ -75,9 +75,9 @@ const ParticleBackground = () => {
         number: {
           density: {
             enable: true,
-            area: 1000, // Maior área para...
+            area: 800, // Área padrão para média densidade
           },
-          value: 30, // ...poucas partículas (minimalismo VIP)
+          value: 100, // Mais partículas na tela
         },
         opacity: {
           value: { min: 0.1, max: 0.4 },
