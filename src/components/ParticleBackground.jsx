@@ -34,19 +34,45 @@ const ParticleBackground = () => {
           },
           onHover: {
             enable: true,
-            mode: "grab", // Puxa uma teia da constelação até o mouse
+            mode: ["grab", "trail"], // Ativa conexão + caminho flutuante
           },
           resize: true,
         },
         modes: {
           push: {
-            quantity: 1, // Ao clicar, libera um pulso muito sutil
+            quantity: 1,
           },
           grab: {
             distance: 180,
             links: {
               opacity: 0.6,
-              color: "#a855f7" // Teia interativa em Neon Roxo
+              color: "#a855f7" 
+            },
+          },
+          trail: {
+            delay: 0.05,
+            pauseOnStop: true,
+            quantity: 1,
+            particles: {
+              color: { value: "#8b5cf6" },
+              links: {
+                enable: true,
+                color: "#8b5cf6",
+                distance: 120,
+                opacity: 0.3,
+              },
+              opacity: {
+                value: { min: 0, max: 0.8 },
+                animation: {
+                  enable: true,
+                  speed: 0.5,
+                  sync: true,
+                  startValue: "max",
+                  destroy: "min", // Partícula morre ao somem
+                },
+              },
+              size: { value: 1.5 },
+              move: { enable: true, speed: 0.2 },
             },
           },
         },
@@ -75,9 +101,9 @@ const ParticleBackground = () => {
         number: {
           density: {
             enable: true,
-            area: 800, // Área padrão para média densidade
+            area: 800, 
           },
-          value: 100, // Mais partículas na tela
+          value: 40, // Densidade reduzida igual a da foto
         },
         opacity: {
           value: { min: 0.1, max: 0.4 },
