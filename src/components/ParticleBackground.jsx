@@ -23,7 +23,7 @@ const ParticleBackground = () => {
       },
       fullScreen: {
         enable: true,
-        zIndex: -5, // Fica atrás de todo o Glassmorphism, mas na frente da cor de fundo bruta
+        zIndex: -10, // Garantia extrema de renderizar atrás de todos os nós do DOM
       },
       fpsLimit: 60, // Limite para manter a CPU gelada
       interactivity: {
@@ -86,7 +86,12 @@ const ParticleBackground = () => {
           type: "circle",
         },
         size: {
-          value: { min: 1, max: 2 },
+          value: { min: 0.5, max: 3.5 }, // Variação alta (pontos minúsculos como estrelas distantes e grandes como nós vizinhos)
+          animation: {
+            enable: true,
+            speed: 2,
+            sync: false, // Faz elas piscarem aleatoriamente (twinkling)
+          }
         },
       },
       detectRetina: true,
