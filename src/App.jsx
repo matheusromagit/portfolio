@@ -18,6 +18,7 @@ const ScrollToTop = () => {
   return null;
 };
 import Navbar from './components/Navbar';
+import ParticleBackground from './components/ParticleBackground';
 import Hero from './components/Hero';
 import Carousel from './components/Carousel';
 import Features from './components/Features';
@@ -41,6 +42,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="min-h-screen text-slate-50 selection:bg-blue-500/30 pt-20">
+        <ParticleBackground />
         <Navbar />
         <Routes>
           <Route path="/" element={<About />} />
