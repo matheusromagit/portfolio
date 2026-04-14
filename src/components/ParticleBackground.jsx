@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
-// Canvas-based mouse trail overlay (completely independent of tsparticles)
-const MouseTrail = () => {
+// Overlay que registra as LINHAS entre pontos próximos ao passar o mouse
+// e as deixa persistir por ~1.5s antes de sumirem
+const LingerLines = () => {
   const canvasRef = useRef(null);
-  const trailRef = useRef([]);
+  const linesRef = useRef([]);
+  const mouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef(null);
-  const mouseRef = useRef({ x: -9999, y: -9999, active: false });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -19,19 +22,50 @@ const MouseTrail = () => {
     window.addEventListener("resize", resize);
 
     const onMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
-      // Spawn trail particles
-      for (let i = 0; i < 3; i++) {
-        trailRef.current.push({
-          x: e.clientX + (Math.random() - 0.5) * 10,
-          y: e.clientY + (Math.random() - 0.5) * 10,
-          r: Math.random() * 2 + 0.5,
-          alpha: 0.8 + Math.random() * 0.2,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5 - 0.3,
-          life: 1.0, // full life
-          decay: 0.008 + Math.random() * 0.006, // how fast it fades (1-2 seconds)
-        });
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+
+      // Pega as partículas do tsparticles via DOM/container
+      const container = window.tsParticles?.domItem(0);
+      if (!container) return;
+
+      const allParticles = container.particles?.array;
+      if (!allParticles) return;
+
+      const mx = e.clientX;
+      const my = e.clientY;
+      const grabDist = 220;
+
+      // Partículas próximas ao mouse
+      const nearby = allParticles.filter((p) => {
+        const dx = p.position.x - mx;
+        const dy = p.position.y - my;
+        return Math.sqrt(dx * dx + dy * dy) < grabDist;
+      });
+
+      // Gera linhas entre pares de partículas próximas
+      for (let i = 0; i < nearby.length; i++) {
+        for (let j = i + 1; j < nearby.length; j++) {
+          const a = nearby[i];
+          const b = nearby[j];
+          const dx = a.position.x - b.position.x;
+          const dy = a.position.y - b.position.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 160) {
+            linesRef.current.push({
+              x1: a.position.x,
+              y1: a.position.y,
+              x2: b.position.x,
+              y2: b.position.y,
+              life: 1.0,
+              decay: 1 / (60 * 1.8), // ~1.8 segundos pra sumir
+            });
+          }
+        }
+      }
+
+      // Limita quantidade de linhas na memória
+      if (linesRef.current.length > 400) {
+        linesRef.current = linesRef.current.slice(-400);
       }
     };
 
@@ -40,29 +74,16 @@ const MouseTrail = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw trail particles
-      trailRef.current = trailRef.current.filter((p) => p.life > 0);
+      linesRef.current = linesRef.current.filter((l) => l.life > 0);
 
-      for (const p of trailRef.current) {
-        p.life -= p.decay;
-        p.x += p.vx;
-        p.y += p.vy;
-
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-        gradient.addColorStop(0, `rgba(168, 85, 247, ${p.life * 0.9})`);
-        gradient.addColorStop(0.5, `rgba(139, 92, 246, ${p.life * 0.4})`);
-        gradient.addColorStop(1, `rgba(99, 102, 241, 0)`);
-
+      for (const l of linesRef.current) {
+        l.life -= l.decay;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-
-        // Glowing dot center
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(220, 180, 255, ${p.life})`;
-        ctx.fill();
+        ctx.moveTo(l.x1, l.y1);
+        ctx.lineTo(l.x2, l.y2);
+        ctx.strokeStyle = `rgba(168, 85, 247, ${l.life * 0.6})`;
+        ctx.lineWidth = l.life * 1.2;
+        ctx.stroke();
       }
 
       rafRef.current = requestAnimationFrame(animate);
@@ -87,16 +108,11 @@ const MouseTrail = () => {
         width: "100vw",
         height: "100vh",
         pointerEvents: "none",
-        zIndex: -9,
+        zIndex: -9, // acima do tsparticles (-10) mas abaixo do conteúdo
       }}
     />
   );
 };
-
-// tsParticles constellation background
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import { useState, useMemo } from "react";
 
 const ConstellationBg = () => {
   const [init, setInit] = useState(false);
@@ -121,7 +137,7 @@ const ConstellationBg = () => {
         modes: {
           push: { quantity: 6 },
           grab: {
-            distance: 200,
+            distance: 220,
             links: { opacity: 0.7, color: "#a855f7" },
           },
         },
@@ -132,48 +148,32 @@ const ConstellationBg = () => {
         },
         links: {
           color: "#7c3aed",
-          distance: 150,
+          distance: 130,
           enable: true,
           opacity: 0.2,
           width: 1,
-          triangles: {
-            enable: false,
-          },
         },
         move: {
           direction: "none",
           enable: true,
-          outModes: { default: "bounce" }, // Bounce: ficam na tela e se movem entre si
+          outModes: { default: "bounce" },
           random: true,
-          speed: { min: 0.2, max: 0.8 }, // Velocidade variada — umas rápidas, outras lentas
+          speed: { min: 0.2, max: 0.7 },
           straight: false,
-          attract: {
-            enable: true,
-            rotateX: 600,
-            rotateY: 1200,
-          },
+          attract: { enable: true, rotateX: 600, rotateY: 1200 },
         },
         number: {
           density: { enable: true, area: 600 },
-          value: 200, // MUITO mais partículas
+          value: 200,
         },
         opacity: {
           value: { min: 0.05, max: 0.7 },
-          animation: {
-            enable: true,       // Piscar: aparecem e somem organicamente
-            speed: 1.2,
-            sync: false,
-            minimumValue: 0.05,
-          },
+          animation: { enable: true, speed: 1.2, sync: false },
         },
         shape: { type: "circle" },
         size: {
           value: { min: 0.5, max: 3 },
-          animation: {
-            enable: true,
-            speed: 3,
-            sync: false,
-          },
+          animation: { enable: true, speed: 3, sync: false },
         },
       },
       detectRetina: true,
@@ -188,7 +188,7 @@ const ConstellationBg = () => {
 const ParticleBackground = () => (
   <>
     <ConstellationBg />
-    <MouseTrail />
+    <LingerLines />
   </>
 );
 
