@@ -131,15 +131,11 @@ const ConstellationBg = () => {
       interactivity: {
         events: {
           onClick: { enable: true, mode: "push" },
-          onHover: { enable: true, mode: "grab" },
+          onHover: { enable: false },
           resize: true,
         },
         modes: {
-          push: { quantity: 6 },
-          grab: {
-            distance: 220,
-            links: { opacity: 0.7, color: "#a855f7" },
-          },
+          push: { quantity: 4 },
         },
       },
       particles: {
