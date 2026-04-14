@@ -17,6 +17,23 @@ const ScrollToTop = () => {
 
   return null;
 };
+
+const MouseTracker = () => {
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const cards = document.getElementsByClassName("glass-panel");
+      for (const card of cards) {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+      }
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+  return null;
+};
+
 import Navbar from './components/Navbar';
 import ParticleBackground from './components/ParticleBackground';
 import Hero from './components/Hero';
@@ -41,6 +58,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <MouseTracker />
       <div className="min-h-screen text-slate-50 selection:bg-blue-500/30 pt-20">
         <ParticleBackground />
         <Navbar />
